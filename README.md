@@ -11,7 +11,7 @@ Image Super-Resolution using Deep Convolutional Neural Networks.
 Install and update using [pip](https://pip.pypa.io/en/stable/quickstart/):
 
 ```bash
-pip3 install super_resolution
+pip3 install super-resolution
 ```
 Or
 ```bash

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: super-resolution
-Version: 0.1.0
+Version: 0.1.1
 Summary: Library generating 4x super resoltion using deep convolutional neural networks.
 Home-page: https://github.com/fengwang/super_resolution
 Author: Feng Wang
@@ -44,7 +44,7 @@ Image Super-Resolution using Deep Convolutional Neural Networks.
 Install and update using [pip](https://pip.pypa.io/en/stable/quickstart/):
 
 ```bash
-pip3 install super_resolution
+pip3 install super-resolution
 ```
 Or
 ```bash

@@ -13,6 +13,14 @@ Install and update using [pip](https://pip.pypa.io/en/stable/quickstart/):
 ```bash
 pip3 install super_resolution
 ```
+Or
+```bash
+git checkout https://github.com/fengwang/super_resolution.git
+cd super_resolution
+python3 -m pip install -e .
+```
+
+
 ## Usage
 
 Command line:

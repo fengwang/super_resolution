@@ -8,6 +8,16 @@ assets/ReadMe.md
 assets/demo.png
 assets/large.png
 assets/small.png
+docs/source/conf.py
+docs/source/index.rst
+docs/source/modules.rst
+docs/source/.doctrees/environment.pickle
+docs/source/.doctrees/index.doctree
+docs/source/.doctrees/module.doctree
+super_resolution/__init__.py
+super_resolution/__version__.py
+super_resolution/entry_points.py
+super_resolution/super_resolution.py
 super_resolution.egg-info/PKG-INFO
 super_resolution.egg-info/SOURCES.txt
 super_resolution.egg-info/dependency_links.txt
@@ -15,3 +25,8 @@ super_resolution.egg-info/entry_points.txt
 super_resolution.egg-info/not-zip-safe
 super_resolution.egg-info/requires.txt
 super_resolution.egg-info/top_level.txt
+super_resolution/__pycache__/__init__.cpython-39.pyc
+super_resolution/__pycache__/entry_points.cpython-39.pyc
+super_resolution/__pycache__/super_resolution.cpython-39.pyc
+super_resolution/resources/cartoon_model/js.json
+super_resolution/resources/cartoon_model/weights.h5

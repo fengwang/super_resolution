@@ -38,7 +38,7 @@ super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
 from super_resolution import cartoon_upsampling_4x
 import imageio
 
-cartoon_upsampling_4x( imageio.imread( './a_tiny_image.png', './a_4x_larger_image.png' ) )
+cartoon_upsampling_4x( './a_tiny_image.png', './a_4x_larger_image.png' )
 ```
 
 ## Details

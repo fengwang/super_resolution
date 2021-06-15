@@ -1,8 +1,5 @@
-The py_pkg Package
+The super_resolution Package
 ==================
 
-.. automodule:: py_pkg.curves
-    :members:
-
-.. automodule:: py_pkg.entry_points
+.. automodule:: super_resolution.entry_points
     :members:

@@ -145,13 +145,37 @@ class InstanceNormalization(Layer):
 get_custom_objects().update({'InstanceNormalization': InstanceNormalization})
 
 
+def rgba2rgb( rgba, background=(255,255,255) ):
+    row, col, ch = rgba.shape
+
+    if ch == 3:
+        return rgba
+
+    assert ch == 4, 'RGBA image has 4 channels.'
+
+    rgb = np.zeros( (row, col, 3), dtype='float32' )
+    r, g, b, a = rgba[:,:,0], rgba[:,:,1], rgba[:,:,2], rgba[:,:,3]
+
+    a = np.asarray( a, dtype='float32' ) / 255.0
+
+    R, G, B = background
+
+    rgb[:,:,0] = r * a + (1.0 - a) * R
+    rgb[:,:,1] = g * a + (1.0 - a) * G
+    rgb[:,:,2] = b * a + (1.0 - a) * B
+
+    return np.asarray( rgb, dtype='uint8' )
+
+
+
 # handling input image, gray -> rgb, rgba -> rgb
 def clean_input( image ):
     if len(image.shape) == 3:
         if image.shape[-1] == 3: # direct return RGB image
             return image
         if image.shape[-1] == 4: # RGBA -> RGB
-            return image[:,:,:3]
+            return rgba2rgb( image )
+            #return image[:,:,:3]
 
     if len(image.shape) == 2: # GRAY -> RGB
         ans = np.zeros( image.shape + 3 )

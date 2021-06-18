@@ -1,6 +1,6 @@
 # Super Resolution
 
-![](https://github.com/fengwang/super_resolution/raw/master/assets/demo.png)
+![](https://github.com/fengwang/super_resolution/raw/master/assets/demo_2.png)
 
 
 Image Super-Resolution using Deep Convolutional Neural Networks.

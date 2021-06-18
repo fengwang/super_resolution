@@ -28,6 +28,8 @@ Command line:
 super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
 ```
 
+Using Python API:
+
 ```python
 # uncomment the follow three lines if you have a Nvidia GPU but you do not want to enable it.
 #import os
@@ -36,7 +38,7 @@ super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
 
 from super_resolution import cartoon_upsampling_4x
 
-cartoon_upsampling_4x( './a_tiny_image.png', './a_4x_larger_image.png' )
+large_image = cartoon_upsampling_4x( './a_tiny_input_image.png', './a_4x_larger_output_image.png' )
 ```
 
 ## Details

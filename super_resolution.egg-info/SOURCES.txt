@@ -1,3 +1,4 @@
+MANIFEST.in
 README.md
 setup.py
 ./super_resolution/__init__.py
@@ -27,7 +28,8 @@ super_resolution.egg-info/not-zip-safe
 super_resolution.egg-info/requires.txt
 super_resolution.egg-info/top_level.txt
 super_resolution/__pycache__/__init__.cpython-39.pyc
-super_resolution/__pycache__/entry_points.cpython-39.pyc
 super_resolution/__pycache__/super_resolution.cpython-39.pyc
 super_resolution/resources/cartoon_model/js.json
 super_resolution/resources/cartoon_model/weights.h5
+super_resolution/resources/cartoon_model_8x/js.json
+super_resolution/resources/cartoon_model_8x/weights.h5

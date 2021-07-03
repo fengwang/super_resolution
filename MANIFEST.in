@@ -1,0 +1,2 @@
+recursive-include super-resolution *.json
+recursive-include super-resolution *.h5

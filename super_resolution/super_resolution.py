@@ -242,8 +242,8 @@ def cartoon_upsampling_8x( input_low_resolution_image_path, output_8x_high_resol
     ans = np.asarray( np.squeeze( ans ) * 255, dtype='uint8' )
 
     # save high resolution image
-    if output_4x_high_resolution_image_path is not None:
-        imageio.imwrite( output_4x_high_resolution_image_path, ans )
+    if output_8x_high_resolution_image_path is not None:
+        imageio.imwrite( output_8x_high_resolution_image_path, ans )
 
     # return high resolution image
     return ans

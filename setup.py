@@ -25,7 +25,7 @@ setup(
     author_email=about['__author_email__'],
     url=about['__url__'],
     packages=['super_resolution'],
-    package_dir={"": '.'},
+    package_dir={"": '.', "model1":'./super_resolution/resources/cartoon_model/*', "model2":'./super_resolution/resources/cartoon_model_8x/*'},
     include_package_data=True,
     python_requires=">=3.6.*",
     install_requires=['imageio', 'tensorflow>=2.3', 'tensorflow-cpu>=2.3'],

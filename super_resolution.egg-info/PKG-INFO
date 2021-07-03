@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: super-resolution
-Version: 0.1.4
-Summary: Library generating 4x super resoltion using deep convolutional neural networks.
+Version: 0.2.0
+Summary: Library generating 4x/8x super resoltion using deep convolutional neural networks.
 Home-page: https://github.com/fengwang/super_resolution
 Author: Feng Wang
 Author-email: wang_feng@live.com
@@ -33,7 +33,7 @@ Description-Content-Type: text/markdown
 
 # Super Resolution
 
-![](https://github.com/fengwang/super_resolution/raw/master/assets/demo.png)
+![](https://github.com/fengwang/super_resolution/raw/master/assets/demo_2.png)
 
 
 Image Super-Resolution using Deep Convolutional Neural Networks.
@@ -58,8 +58,10 @@ python3 -m pip install -e .
 Command line:
 
 ```bash
-super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
+super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH_4X
 ```
+
+Using Python API:
 
 ```python
 # uncomment the follow three lines if you have a Nvidia GPU but you do not want to enable it.
@@ -68,8 +70,10 @@ super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
 #os.environ["CUDA_VISIBLE_DEVICES"]=''
 
 from super_resolution import cartoon_upsampling_4x
+large_image = cartoon_upsampling_4x( './a_tiny_input_image.png', './a_4x_larger_output_image.png' )
 
-cartoon_upsampling_4x( './a_tiny_image.png', './a_4x_larger_image.png' )
+from super_resolution import cartoon_upsampling_8x
+large_image = cartoon_upsampling_8x( './a_tiny_input_image.png', './a_8x_larger_output_image.png' )
 ```
 
 ## Details

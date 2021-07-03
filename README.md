@@ -25,7 +25,7 @@ python3 -m pip install -e .
 Command line:
 
 ```bash
-super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH
+super_resolution INPUT_IMAGE_PATH OUTPUT_IMAGE_PATH_4X
 ```
 
 Using Python API:
@@ -37,8 +37,10 @@ Using Python API:
 #os.environ["CUDA_VISIBLE_DEVICES"]=''
 
 from super_resolution import cartoon_upsampling_4x
-
 large_image = cartoon_upsampling_4x( './a_tiny_input_image.png', './a_4x_larger_output_image.png' )
+
+from super_resolution import cartoon_upsampling_8x
+large_image = cartoon_upsampling_8x( './a_tiny_input_image.png', './a_8x_larger_output_image.png' )
 ```
 
 ## Details

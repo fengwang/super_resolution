@@ -6,8 +6,8 @@ Information about the current version of the super_resolution package.
 """
 
 __title__ = 'super_resolution'
-__description__ = 'Library generating 4x super resoltion using deep convolutional neural networks.'
-__version__ = '0.1.4'
+__description__ = 'Library generating 4x/8x super resoltion using deep convolutional neural networks.'
+__version__ = '0.2.0'
 __author__ = 'Feng Wang'
 __author_email__ = 'wang_feng@live.com'
 __license__ = 'BSD'

@@ -6,6 +6,7 @@ setup.py
 ./super_resolution/super_resolution.py
 assets/ReadMe.md
 assets/demo.png
+assets/demo_2.png
 assets/large.png
 assets/small.png
 docs/source/conf.py

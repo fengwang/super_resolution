@@ -1,5 +1,5 @@
 
-__all__ = ['cartoon_upsampling_4x',]
+__all__ = ['cartoon_upsampling_4x', 'cartoon_upsampling_8x']
 
 import os
 import numpy as np
@@ -185,7 +185,6 @@ def clean_input( image ):
     assert False, f"Unknown image with shape {image.shape}"
 
 cartoon_model = None
-
 def cartoon_upsampling_4x( input_low_resolution_image_path, output_4x_high_resolution_image_path=None ):
     # read low resolution image
     im = imageio.imread( input_low_resolution_image_path )
@@ -217,6 +216,37 @@ def cartoon_upsampling_4x( input_low_resolution_image_path, output_4x_high_resol
     # return high resolution image
     return ans
 
+
+cartoon_model_8x = None
+def cartoon_upsampling_8x( input_low_resolution_image_path, output_8x_high_resolution_image_path=None ):
+    # read low resolution image
+    im = imageio.imread( input_low_resolution_image_path )
+    im = clean_input( im )
+
+    # preparing input for the neural network
+    row, col, _ = im.shape
+    im = np.asarray( im, dtype='float32' )
+    im = im / 127.5 - 1.0
+    im = im.reshape( (1,)+im.shape )
+
+    # prepare neural network
+    global cartoon_model_8x
+    if cartoon_model_8x is None:
+        script_folder = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(script_folder, 'resources', 'cartoon_model_8x' )
+        cartoon_model_8x = read_model( model_path )
+
+    # predict high resolution image
+    ans = cartoon_model_8x.predict( im, batch_size=1 )
+    ans = ans * 0.5 + 0.5
+    ans = np.asarray( np.squeeze( ans ) * 255, dtype='uint8' )
+
+    # save high resolution image
+    if output_4x_high_resolution_image_path is not None:
+        imageio.imwrite( output_4x_high_resolution_image_path, ans )
+
+    # return high resolution image
+    return ans
 
 
 # TODO: super resolution video

@@ -1,3 +1,0 @@
-[console_scripts]
-super_resolution = super_resolution.entry_points:main
-

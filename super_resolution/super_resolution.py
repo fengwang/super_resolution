@@ -16,30 +16,6 @@ from tensorflow.keras import backend as K
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
-'''
-    Example:
-        model = read_model( './cached_folder' )
-'''
-def read_model(directory):
-    #weights_path = f'{directory}/weights.h5'
-    weights_path = os.path.join( directory, 'weights.h5' )
-    if not os.path.isfile(weights_path):
-        print( f'Failed to find weights from file {weights_path}' )
-        return None
-
-    #json_path = f'{directory}/js.json'
-    json_path = os.path.join( directory, 'js.json' )
-    if not os.path.isfile(json_path):
-        print( f'Failed to find model from file {json_path}' )
-        return None
-
-    js_file = open( json_path, 'r' )
-    model_json = js_file.read()
-    js_file.close()
-    model = model_from_json( model_json )
-    model.load_weights( weights_path )
-    return model
-
 # credit goes to:
 # https://github.com/keras-team/keras-contrib/blob/master/keras_contrib/layers/normalization/instancenormalization.py
 class InstanceNormalization(Layer):
@@ -143,6 +119,30 @@ class InstanceNormalization(Layer):
         return dict(list(base_config.items()) + list(config.items()))
 
 get_custom_objects().update({'InstanceNormalization': InstanceNormalization})
+
+'''
+    Example:
+        model = read_model( './cached_folder' )
+'''
+def read_model(directory):
+    #weights_path = f'{directory}/weights.h5'
+    weights_path = os.path.join( directory, 'weights.h5' )
+    if not os.path.isfile(weights_path):
+        print( f'Failed to find weights from file {weights_path}' )
+        return None
+
+    #json_path = f'{directory}/js.json'
+    json_path = os.path.join( directory, 'js.json' )
+    if not os.path.isfile(json_path):
+        print( f'Failed to find model from file {json_path}' )
+        return None
+
+    js_file = open( json_path, 'r' )
+    model_json = js_file.read()
+    js_file.close()
+    model = model_from_json( model_json, custom_objects={"InstanceNormalization": InstanceNormalization} )
+    model.load_weights( weights_path )
+    return model
 
 
 def rgba2rgb( rgba, background=(255,255,255) ):

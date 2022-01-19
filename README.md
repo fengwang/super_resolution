@@ -47,6 +47,7 @@ large_image = cartoon_upsampling_8x( './a_tiny_input_image.png', './a_8x_larger_
 
 + The super resolution model is inherited from `Ledig C, Theis L, Huszár F, et al. Photo-realistic single image super-resolution using a generative adversarial network, Proceedings of the IEEE conference on computer vision and pattern recognition. 2017: 4681-4690.`
 + The training images are downloaded from [Konachan (__NSFW__)](https://konachan.com/).
++ This package will download pretrained models from github, storing it it path `~/.deepoffice/super_resolution/model`. If not working properly, please remove this folder and try again.
 
 ## License
 

@@ -6,15 +6,59 @@ import numpy as np
 import imageio
 import os.path
 
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 from tensorflow.keras.models import model_from_json
 from tensorflow.keras.layers import Layer, InputSpec
 from tensorflow.keras import initializers, regularizers, constraints
 from tensorflow.python.keras.utils.generic_utils import get_custom_objects
 from tensorflow.keras import backend as K
+from requests import get
 
 import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
+
+
+# download model files from github release
+def download_remote_model( model_name, model_url):
+    user_model_path = os.path.join( os.path.expanduser('~'), '.deepoffice', 'super_resolution', 'model' )
+    model_path = os.path.join( user_model_path, model_name )
+
+    if not os.path.exists(model_path):
+        os.makedirs(model_path)
+
+    file_name = model_url.rsplit('/', 1)[1]
+    local_model_path = os.path.join( model_path, file_name )
+    if not os.path.isfile(local_model_path):
+        print( f'downloading model file {local_model_path} from {model_url}' )
+        with open(local_model_path, "wb") as file:
+            response = get(model_url)
+            file.write(response.content)
+        print( f'downloaded model file {local_model_path} from {model_url}' )
+
+    return local_model_path
+
+def download_4x_model():
+    model_name = 'super_resolution_4x'
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3/js.json' )
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3/weights.h5' )
+    return os.path.join( os.path.expanduser('~'), '.deepoffice', 'super_resolution', 'model', model_name )
+
+def download_8x_model():
+    model_name = 'super_resolution_8x'
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3.1/js.json' )
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3.1/weights.h5' )
+    return os.path.join( os.path.expanduser('~'), '.deepoffice', 'super_resolution', 'model', model_name )
+
+
+def download_denoised_8x_model():
+    model_name = 'denoised_super_resolution_8x'
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3.2/js.json' )
+    download_remote_model( model_name, 'https://github.com/fengwang/super_resolution/releases/download/0.3.2/weights.h5' )
+    return os.path.join( os.path.expanduser('~'), '.deepoffice', 'super_resolution', 'model', model_name )
+
+
+
+
 
 # credit goes to:
 # https://github.com/keras-team/keras-contrib/blob/master/keras_contrib/layers/normalization/instancenormalization.py
@@ -200,9 +244,8 @@ def cartoon_upsampling_4x( input_low_resolution_image_path, output_4x_high_resol
     global cartoon_model
     if cartoon_model is None:
         script_folder = os.path.dirname(os.path.realpath(__file__))
-        model_path = os.path.join(script_folder, 'resources', 'cartoon_model' )
+        model_path = download_4x_model()
         cartoon_model = read_model( model_path )
-        #cartoon_model = read_model( f'{script_folder}/cartoon_model' )
 
     # predict high resolution image
     ans = cartoon_model.predict( im, batch_size=1 )
@@ -233,7 +276,9 @@ def cartoon_upsampling_8x( input_low_resolution_image_path, output_8x_high_resol
     global cartoon_model_8x
     if cartoon_model_8x is None:
         script_folder = os.path.dirname(os.path.realpath(__file__))
-        model_path = os.path.join(script_folder, 'resources', 'cartoon_model_8x' )
+        #model_path = os.path.join(script_folder, 'resources', 'cartoon_model_8x' )
+        #model_path = download_8x_model()
+        model_path = download_denoised_8x_model()
         cartoon_model_8x = read_model( model_path )
 
     # predict high resolution image
@@ -249,7 +294,5 @@ def cartoon_upsampling_8x( input_low_resolution_image_path, output_8x_high_resol
     return ans
 
 
-# TODO: super resolution video
-#
 
 

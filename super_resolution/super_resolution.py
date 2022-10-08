@@ -222,7 +222,7 @@ def clean_input( image ):
             #return image[:,:,:3]
 
     if len(image.shape) == 2: # GRAY -> RGB
-        ans = np.zeros( image.shape + 3 )
+        ans = np.zeros( image.shape + (3,) )
         ans[:,:,0], ans[:,:,1], ans[:,:,2] = image, image, image
         return ans
 
